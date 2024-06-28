@@ -1,0 +1,30 @@
+
+show dbs
+db
+use metcdac
+
+db.createCollection('user');
+show collections;
+db.user.insert({"name":"user1","age":20});
+db.user.insert({"name":"user2","age":21});
+db.user.insert({"name":"user3","age":22});
+
+//select * from user;
+db.user.find();
+db.user.find().pretty();
+db.user.find({name:"user1"});
+db.user.find({age:{$lt:23}});
+db.user.find({age:{$gt:23}});
+db.user.find({age:{$lte:23}});
+db.user.find({age:{$gte:23}});
+db.user.find({age:{$eq:23}});
+db.user.find({age:{$ne:23}});
+db.user.find({age:{$in:[23,21,90]}});
+db.user.find({$or:[{name:'user1'},{age:23}]});
+db.user.find({$and:[{name:'user1'},{age:23}]});
+
+db.user.update({age:23},{$set:{name:'user4'}});
+db.user.find({name:'user4'});
+
+db.user.remove({name:'user4'});
+
